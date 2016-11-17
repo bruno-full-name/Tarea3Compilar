@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?><!-- Published by JAX-WS RI (http://jax-ws.java.net). RI's version is JAX-WS RI 2.2.9-b130926.1035 svn-revision#5f6196f2b90e9460065a4c2f4e30e065b245e51e. --><xs:schema xmlns:tns="http://servidor/" xmlns:xs="http://www.w3.org/2001/XMLSchema" version="1.0" targetNamespace="http://servidor/">
+
+<xs:complexType name="dtServicio">
+<xs:sequence>
+<xs:element name="categorias" type="xs:string" nillable="true" minOccurs="0" maxOccurs="unbounded"></xs:element>
+<xs:element name="ciudadDestino" type="xs:string" minOccurs="0"></xs:element>
+<xs:element name="ciudadOrigen" type="xs:string" minOccurs="0"></xs:element>
+<xs:element name="descripcion" type="xs:string" minOccurs="0"></xs:element>
+<xs:element name="nickProveedor" type="xs:string" minOccurs="0"></xs:element>
+<xs:element name="nombre" type="xs:string" minOccurs="0"></xs:element>
+<xs:element name="precio" type="xs:float" minOccurs="0"></xs:element>
+<xs:element name="visitas" type="tns:dtVisita" minOccurs="0"></xs:element>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="dtVisita">
+<xs:sequence>
+<xs:element name="id" type="xs:int"></xs:element>
+<xs:element name="cantVisitas" type="xs:int"></xs:element>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="dtReserva">
+<xs:sequence>
+<xs:element name="cli" type="xs:string" minOccurs="0"></xs:element>
+<xs:element name="date" type="tns:dtFecha" minOccurs="0"></xs:element>
+<xs:element name="estado" type="tns:estado" minOccurs="0"></xs:element>
+<xs:element name="id" type="xs:int"></xs:element>
+<xs:element name="infoReserva" type="tns:dtInfoReserva" nillable="true" minOccurs="0" maxOccurs="unbounded"></xs:element>
+<xs:element name="precio" type="xs:float"></xs:element>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="dtFecha">
+<xs:sequence>
+<xs:element name="anio" type="xs:int"></xs:element>
+<xs:element name="dia" type="xs:int"></xs:element>
+<xs:element name="mes" type="xs:int"></xs:element>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="dtInfoReserva">
+<xs:sequence>
+<xs:element name="cantidad" type="xs:int"></xs:element>
+<xs:element name="fechaFin" type="tns:dtFecha" minOccurs="0"></xs:element>
+<xs:element name="fechaIni" type="tns:dtFecha" minOccurs="0"></xs:element>
+<xs:element name="idReserva" type="xs:int"></xs:element>
+<xs:element name="nameArticulo" type="xs:string" minOccurs="0"></xs:element>
+<xs:element name="nickProveedor" type="xs:string" minOccurs="0"></xs:element>
+<xs:element name="precioArticulo" type="xs:float"></xs:element>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="dtCliente">
+<xs:sequence>
+<xs:element name="apellido" type="xs:string" minOccurs="0"></xs:element>
+<xs:element name="clave" type="xs:string" minOccurs="0"></xs:element>
+<xs:element name="email" type="xs:string" minOccurs="0"></xs:element>
+<xs:element name="fechaN" type="tns:dtFecha" minOccurs="0"></xs:element>
+<xs:element name="nick" type="xs:string" minOccurs="0"></xs:element>
+<xs:element name="nombre" type="xs:string" minOccurs="0"></xs:element>
+<xs:element name="reservas" type="xs:int" nillable="true" minOccurs="0" maxOccurs="unbounded"></xs:element>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="inputStream" abstract="true">
+<xs:sequence></xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="dtCategoria">
+<xs:sequence>
+<xs:element name="nivel" type="xs:int"></xs:element>
+<xs:element name="nombre" type="xs:string" minOccurs="0"></xs:element>
+<xs:element name="nombrePadre" type="xs:string" minOccurs="0"></xs:element>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="dtProveedor">
+<xs:sequence>
+<xs:element name="apellido" type="xs:string" minOccurs="0"></xs:element>
+<xs:element name="clave" type="xs:string" minOccurs="0"></xs:element>
+<xs:element name="email" type="xs:string" minOccurs="0"></xs:element>
+<xs:element name="fechaN" type="tns:dtFecha" minOccurs="0"></xs:element>
+<xs:element name="nick" type="xs:string" minOccurs="0"></xs:element>
+<xs:element name="nombre" type="xs:string" minOccurs="0"></xs:element>
+<xs:element name="nombreEmpresa" type="xs:string" minOccurs="0"></xs:element>
+<xs:element name="servicio" type="tns:dtServicio" nillable="true" minOccurs="0" maxOccurs="unbounded"></xs:element>
+<xs:element name="url" type="xs:string" minOccurs="0"></xs:element>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="dtPromocion">
+<xs:sequence>
+<xs:element name="nombre" type="xs:string" minOccurs="0"></xs:element>
+<xs:element name="nickProv" type="xs:string" minOccurs="0"></xs:element>
+<xs:element name="descuento" type="xs:float"></xs:element>
+<xs:element name="precio" type="xs:float"></xs:element>
+<xs:element name="servicios" type="xs:string" nillable="true" minOccurs="0" maxOccurs="unbounded"></xs:element>
+</xs:sequence>
+</xs:complexType>
+
+<xs:simpleType name="estado">
+<xs:restriction base="xs:string">
+<xs:enumeration value="Registrada"></xs:enumeration>
+<xs:enumeration value="Cancelada"></xs:enumeration>
+<xs:enumeration value="Pagada"></xs:enumeration>
+<xs:enumeration value="Facturada"></xs:enumeration>
+</xs:restriction>
+</xs:simpleType>
+
+<xs:complexType name="dtServicioArray" final="#all">
+<xs:sequence>
+<xs:element name="item" type="tns:dtServicio" minOccurs="0" maxOccurs="unbounded" nillable="true"></xs:element>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="dtCategoriaArray" final="#all">
+<xs:sequence>
+<xs:element name="item" type="tns:dtCategoria" minOccurs="0" maxOccurs="unbounded" nillable="true"></xs:element>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="dtInfoReservaArray" final="#all">
+<xs:sequence>
+<xs:element name="item" type="tns:dtInfoReserva" minOccurs="0" maxOccurs="unbounded" nillable="true"></xs:element>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="dtPromocionArray" final="#all">
+<xs:sequence>
+<xs:element name="item" type="tns:dtPromocion" minOccurs="0" maxOccurs="unbounded" nillable="true"></xs:element>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="dtProveedorArray" final="#all">
+<xs:sequence>
+<xs:element name="item" type="tns:dtProveedor" minOccurs="0" maxOccurs="unbounded" nillable="true"></xs:element>
+</xs:sequence>
+</xs:complexType>
+</xs:schema>
